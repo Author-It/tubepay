@@ -1,0 +1,14 @@
+{
+    "history": [
+        {
+            "amount": 100,
+            "source": "Lucky Spin",
+            "id": "lucky_spin"
+        },
+        {
+            "amount": -5000,
+            "source": "PayPal Payout",
+            "id": "payout_paypal"
+        }
+    ]
+}

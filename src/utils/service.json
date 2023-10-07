@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "tubepay-8a666",
+    "private_key_id": "4c16aca23c7b48b327e9df0b09ab4141f808ef9e",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDc57cmOznYKKtC\ntUWFdSN9N1cNcNDYEcLiwmyjmD8ApdDFEo5vRS4MRSOfzG6CLi4N2f4Z98UaDMZH\nOQNztQNiJCtBVW87UaTMXSwGj7cFsMW9Us74iRx4O46//nGkTlXclW29HcV70+mp\noMDDIn7yK/1M4m7m8WlfRt9h17uhzlZIihW2VsqPxBZoQ3gJ0bs1F3NnDKYOMrFl\n84fEu0BuKNgM9xyWAC+/cAz7iytZ7IEzfTGvZuQIAyoAHqEurq1CGvh05sNgN2e0\nRKg1mPYjS/G+JOOZreHzd5fA47Fn1DAax+qIS8chF0Ma2ZLgb7Maf8IZfHY6aJTN\ndW5cG7ZnAgMBAAECggEAAxsS44VQckfBsj9mlp8nlfp+mjn5OObb0y2IMq8D4iUM\nQvXYbZuoYq3G99eU88MyDJA0o8LTBGNXlxrBf95bCZ8xwhcxNPR+stmm5WfrdJ4G\noBT9w4rFJrLK3MvEANsrfXcJ9iKCa0cQcVavck7i2Z7Hgedqrb6JJh8sXTpkpFXo\nOMSYmmqE9N2VT2mmC59Qiv8+cD5lqIAppFWOas3keEkvjrlQtC7OtJxht+speI5q\nJPy+nthIGvfNDRX91ZkB+46TSj0sdoG5jv74InKyze1ps/0/kCjDPGpgfkhbSuaU\nP7rbVQVNNsoJGk1VoPlzmrovfQLPXNqF3ILzGWO/MQKBgQD5uDEGtcMgvE1e0erK\n6IfkM0GwtACcgjrB3jR2sXM3jmPvjDM/yBfyaV3VMkwA6NBQ9LqRUCsld4ltEJT1\n9DZ/Uq+GX4djMPkcmbw74xFjPzgc7SZRnYT9/P/UNMyYpjX/mWqgvpPmOEJuNg3O\ntSgDGItjLuJ4btz/VVCP1aLb3wKBgQDidgD98IoOy+xcSnPVLLDfMzz+zJkmlNqA\nM4/ZBL9tynioSruvtjRXucpxtxv+kO00sKYsdfzbDodnAQebcz9zSx4xkMVCJ9sy\nu0EmMPUjeH5myrqRmAwp0TvjJg3hHgHH11qMViDWDG+6hDWH2RK8y0diawvpjQIF\npphyaFd2eQKBgQCtfkaxfr6ek7S9V+JkLsGazfGprqVuFxxzbMnOXOLLimXsG9/P\nRFk+1e2XHWaoixeP5zdnleckFLSpzYdwiccDFpNULDKHu5KXSEf643tFFLsLfcfN\nlD69p3SmHji3JWMGvbPTEhT3MccVgwB8yGeQHxFYS06UlZF84+0gwTBwyQKBgBZV\nKs3gLc09wQZs9TVdnee1Btvd03Chl1azPwlY1YP/RpzaGd4/KrRIBzXlp+YX5rye\nexTBYfk8WpAG4vgqimRVURn0O+/FPHGpU8hvZY1k8ZozfeijxPdOwggplY7Qxb4u\nd6iFSeGyAkaziQ/nkVh694Q2KEuU81EZV8lYjt+JAoGBAM7M7j49GmFW7uzKTQ5+\nRVgXVKApW8qi9w82vI45vzeOzP4a1c8dQetsBFCZMB9xFGRUikP4dh8RscdSCh1X\nBc6vHjwXTNC11ci+WCLkV8nnz9aZC6UY+jHas/oZ1k6tD18f/eev5l1w58Aq+MEM\nrfLHs84iBVaitc1KEmDl+MxR\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-3h0qn@tubepay-8a666.iam.gserviceaccount.com",
+    "client_id": "104197888714806496929",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-3h0qn%40tubepay-8a666.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+}

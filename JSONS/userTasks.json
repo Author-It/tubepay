@@ -1,0 +1,46 @@
+{
+    "1": {
+        "claimed" : false,
+        "progress": 0
+    },
+    "2": {
+        "claimed" : false,
+        "progress": 0
+    },
+    "3": {
+        "claimed" : false,
+        "progress": 0
+    },
+    "4": {
+        "claimed" : false,
+        "progress": 0
+    },
+    "5": {
+        "claimed" : false,
+        "progress": 0
+    },
+    "6": {
+        "claimed" : false,
+        "progress": 0
+    }, 
+    "7": {
+        "claimed" : false,
+        "progress": 0
+    },
+    "8": {
+        "claimed" : false,
+        "progress": 0
+    },
+    "9": {
+        "claimed" : false,
+        "progress": 0
+    },
+    "10": {
+        "claimed" : false,
+        "progress": 0
+    }, 
+    "11": {
+        "claimed" : false,
+        "progress": 0
+    }
+}
