@@ -16,7 +16,7 @@ interface e {
 router.get("/reset/day", async (req:Request, res:Response) => {
     const pass = req.query.p;
     
-    if (pass != process.env.ADMIN_PASS) return;
+    if (!pass || pass != process.env.ADMIN_PASS) return res.status(403).send("INVALID KEY " + pass);
     
     let conn;
     try {
@@ -82,7 +82,7 @@ router.get("/reset/day", async (req:Request, res:Response) => {
 router.get("/draw/luckynumber", async (req:Request, res:Response) => {
     const pass = req.query.p;
     
-    if (pass != process.env.ADMIN_PASS) return
+    if (pass != process.env.ADMIN_PASS) return res.status(403).send("INVALID KEY " + pass);
 
     let conn;
     try {
