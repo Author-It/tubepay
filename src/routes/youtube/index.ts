@@ -67,7 +67,10 @@ router.put(
         let conn;
         try {
             conn = await pool.getConnection();
-            const user = await conn.query(`SELECT youtubeTime,points FROM users WHERE uid=?`, [res.locals.uid])
+
+            const user = await conn.query(`SELECT youtubeTime,points FROM users WHERE uid=?`, [res.locals.uid]);
+            if (!user[0]) return res.status(400).send("BAD REQUEST");
+
             const p = Math.floor(Math.random() * (28 - 20 + 1) + 20)
             const a = res.locals.time - user[0].youtubeTime;
             if (!(a > 20)) return;
