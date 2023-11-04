@@ -16,12 +16,12 @@ router.get("/getvideo", async (req: Request, res: Response) => {
     let conn;
     const my_vid = [
         {
-            title: 'Tube Pay - Watch Youtube Video Earn Money Free',
-            description: 'use Code : IP61IQP3',
+            title: 'Scratch Card and Earn- Free money Referral hack | Unlimited Earning | Live payout',
+            description: 'Scratcher App is hacked!! 😱😱',
             videoID: 0,
             uid: 123,
             visibility: 0,
-            link: 'jKaKrWHL1L8'
+            link: 'qsMoxlrQjc8'
         }
     ]
 
