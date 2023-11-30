@@ -53,8 +53,10 @@ router.put(
 
             await conn.query(`UPDATE users SET points=points+500,totalReferrals=totalReferrals+1,referralToday=referralToday+1 WHERE referral=?`, [ref]);
             await conn.query(`UPDATE users SET referredBy=?,points=points+400 WHERE uid=?`, [check[0].uid, res.locals.uid]);
+            
             await addPointsHistory(res.locals.uid, 200, "Referral Applied", "referral_applied");
             await addPointsHistory(check[0].uid, 300, "Referral Added", "referral_add");
+            
             res.status(201).send("REFERRAL CODE APPLIED SUCCESSFULLY!");
             info(`${ref} REFERRED ${user[0].referral}`);
         } catch (error) {
