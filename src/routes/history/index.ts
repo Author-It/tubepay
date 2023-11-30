@@ -41,4 +41,5 @@ router.get("/payout/:uid", async (req, res) => {
         if (conn) conn.release();
     }
 });
+
 export default router;

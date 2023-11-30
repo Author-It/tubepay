@@ -4,15 +4,17 @@ config();
 import { Router, Request, Response, NextFunction } from "express";
 import { pool } from "../../client/database";
 import { addPointsHistory, decryptRSA } from "../../utils/functions";
-import moment from "moment"
+import moment from "moment";
+
+import { info } from "../../utils/logger";
 
 const router = Router();
-const logger = require("../../utils/logger.js");
 
 interface meow {
     fingerprint: string;
     uid: string;
     time: number;
+    version: number;
 }
 
 router.put(
@@ -24,6 +26,7 @@ router.put(
             const decrypted = await decryptRSA(encrypted);
             const obj: meow = JSON.parse(decrypted);
 
+            if (!obj.version) return res.status(403).send("PLEASE UPDATE YOUR APP TO CLAIM!");
             if (obj.fingerprint != process.env.FINGERPRINT) return res.send("INVALID APP FINGERPRINT");
             if (obj.time + 5 > Date.now()) return res.status(409).send("REQUEST TIMED OUT");
 
@@ -53,7 +56,7 @@ router.put(
             await addPointsHistory(res.locals.uid, 200, "Referral Applied", "referral_applied");
             await addPointsHistory(check[0].uid, 300, "Referral Added", "referral_add");
             res.status(201).send("REFERRAL CODE APPLIED SUCCESSFULLY!");
-            logger.info(`${ref} REFERRED ${user[0].referral}`);
+            info(`${ref} REFERRED ${user[0].referral}`);
         } catch (error) {
             console.log(error);
             res.status(500).send("ERROR FEEDING VALUES INTO DATABASE");
@@ -124,6 +127,7 @@ router.put(
             const decrypted = await decryptRSA(encrypted);
             const obj: meow = JSON.parse(decrypted);
 
+            if (!obj.version) return res.status(403).send("PLEASE UPDATE YOUR APP TO CLAIM!");
             if (obj.fingerprint != process.env.FINGERPRINT) return res.send("INVALID APP FINGERPRINT");
             if (obj.time + 5 > Date.now()) return res.status(409).send("REQUEST TIMED OUT");
 

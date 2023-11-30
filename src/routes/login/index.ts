@@ -5,7 +5,8 @@ import { Router, Request, Response } from 'express';
 import { decryptRSA } from "../../utils/functions"
 import { pool } from "../../client/database";
 
-const logger = require("../../utils/logger.js");
+import { success } from "../../utils/logger";
+
 const router = Router();
 
 interface meow {
@@ -26,7 +27,7 @@ router.post("/", async (req:Request, res:Response) => {
 
     if (obj.fingerprint != process.env.FINGERPRINT) return res.send("INVALID APP FINGERPRINT")
 
-    logger.success("New Account Created: " + obj.uid);
+    success("New Account Created: " + obj.uid);
     let conn;
     try {
         conn = await pool.getConnection();

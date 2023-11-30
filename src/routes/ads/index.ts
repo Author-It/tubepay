@@ -5,8 +5,7 @@ import { sha1 } from "node-forge"
 import { Router, Request, Response } from 'express';
 import { pool } from "../../client/database";
 import { addPointsHistory } from '../../utils/functions';
-
-const logger = require("../../utils/logger.js");
+import { warn } from '../../utils/logger';
 
 const router = Router();
 
@@ -14,11 +13,11 @@ router.get("/verify", async (req: Request, res: Response) => {
     const userID = req.query.user_id;
     const event = req.query.event;
     const eventToekn = req.query.token;
-    if (!userID || !event || !eventToekn) { res.status(422).send("Incomplete data sent"); logger.warn("Incomplete data"); return; }
+    if (!userID || !event || !eventToekn) { res.status(422).send("Incomplete data sent"); warn("Incomplete data"); return; }
 
     const toCheck = sha1.create().update(event! + process.env.APPLOVIN_TOKEN!).digest().toHex().toString()
 
-    if (toCheck != eventToekn) { res.status(400).send("Bad Request"); logger.warn("Bad SHA"); return; };
+    if (toCheck != eventToekn) { res.status(400).send("PLEASE UPDATE YOUR APP TO CLAIM"); warn("PLEASE UPDATE YOUR APP TO CLAIM!"); return; };
 
     let conn;
     try {
@@ -37,13 +36,14 @@ router.get("/verify20", async (req: Request, res: Response) => {
     const event = req.query.event;
     const eventToekn = req.query.token;
     if (!userID || !event || !eventToekn) {
-        logger.warn("Incomplete data"); 
+        warn("Incomplete data"); 
         return;
     }
     const toCheck = sha1.create().update(event! + process.env.APPLOVIN_TOKEN!).digest().toHex().toString()
 
     if (toCheck != eventToekn) { 
-        logger.warn("Bad SHA"); 
+        warn("PLEASE UPDATE YOUR APP TO CLAIM!");
+        res.status(400).send("PLEASE UPDATE YOUR APP TO CLAIM");
         return; 
     }
 

@@ -105,7 +105,7 @@ export async function addPayoutHistory(
 
 export function getAccessToken() {
     return new Promise(function (resolve, reject) {
-        const key = require("./service.json");
+        const key = require("../../assets/service.json");
         const jwtClient = new google.auth.JWT(
             key.client_email,
             null,
