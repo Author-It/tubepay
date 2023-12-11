@@ -17,12 +17,12 @@ router.get("/getvideo", async (req: Request, res: Response) => {
     let conn;
     const my_vid = [
         {
-            title: 'Scratch Card and Earn- Free money Referral hack | Unlimited Earning | Live payout',
-            description: 'Scratcher App is hacked!! 😱😱',
+            title: 'Happy Christmas - Free Rewards and Earn Gifts',
+            description: 'Celebrate this christmas with happy christmas app',
             videoID: 0,
             uid: 123,
             visibility: 0,
-            link: 'qsMoxlrQjc8'
+            link: 'zHdiuB1ODXU'
         }
     ]
 
