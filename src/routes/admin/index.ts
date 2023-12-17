@@ -184,7 +184,7 @@ router.get("/getactive", async (req, res) => {
         res.send("meow");
         console.log(error)
     } finally {
-        if (conn) await conn.release();
+        if (conn) conn.release();
     }
 })
 
