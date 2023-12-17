@@ -27,7 +27,6 @@ router.post("/", async (req:Request, res:Response) => {
 
     if (obj.fingerprint != process.env.FINGERPRINT) return res.send("INVALID APP FINGERPRINT")
 
-    success("New Account Created: " + obj.uid);
     let conn;
     try {
         conn = await pool.getConnection();
@@ -40,6 +39,7 @@ router.post("/", async (req:Request, res:Response) => {
         if (findUID[0]) return res.status(409).send("ACCOUNT ALREADY EXISTS WITH THIS EMAIL");
 
         await conn.query(`INSERT INTO users (uid, referral, deviceID) VALUES (?, ?, ?)`, [obj.uid, a, obj.deviceID]);
+        success("New Account Created: " + obj.uid);
         res.status(201).send("Data Creation Success!");
     } catch (error) {
         console.log(error)   
