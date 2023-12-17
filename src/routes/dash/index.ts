@@ -106,7 +106,7 @@ router.get("/getInfo/:uid", async (req, res) => {
         else {
             console.log("BC YE KY HO GYA");
             console.log(streak + "\n" + streakClaimed);
-            return res.status(403).send("ERROR!");
+            await conn.query(`UPDATE users SET streak=0,streakClaimed=-1 WHERE uid=?`, [uid]);
         }
 
         Object.assign(result[0], { streakArr: arr }, { tasks: [JSON.parse(result[0].tasks)] }, { "dailyReset": parseInt(adminData[0].dailyReset), "number": parseInt(adminData[0].number), "luckyNumber": parseInt(adminData[0].luckyNumber), "timenow": moment(Date.now()).unix() });
