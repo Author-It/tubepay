@@ -22,30 +22,6 @@ router.get("/reset/day", async (req:Request, res:Response) => {
     try {
         conn = await pool.getConnection();
         
-        getAccessToken().then(function(token){
-
-            axios.post(
-                "https://fcm.googleapis.com/v1/projects/tubepay-8a666/messages:send", 
-                {
-                    "message": {
-                        "topic": "topic",
-                        "notification": {
-                            "title": "Daily Reset",
-                            "body": "All tasks have been reset start earning again!"
-                        },
-                        "android": {
-                            "notification": {
-                                "image": "https://i.imgur.com/XGIQD5e.jpg"
-                            }
-                        }
-                    }
-                },
-                {
-                    headers: {Authorization: `Bearer ${token}`}
-                }
-            )
-        })
-        
         await conn.query(`UPDATE users SET maxStreak=1 WHERE streakClaimed=6;`);
         await conn.query(`UPDATE users SET streak=streak+1,dailyAds=0,referralToday=0,spinCount=0,adsWatched=0,requests=0,videoWatched=0 WHERE 1;`);
         await conn.query(`UPDATE users SET streak=0,streakClaimed=-1 WHERE streak=7;`);
@@ -68,6 +44,30 @@ router.get("/reset/day", async (req:Request, res:Response) => {
             uTask["10"]["claimed"] = false;
             
             await conn.query("UPDATE users SET tasks=? WHERE uid=?", [JSON.stringify(uTask), user[i].uid])
+
+            getAccessToken().then(function(token){
+
+                axios.post(
+                    "https://fcm.googleapis.com/v1/projects/tubepay-8a666/messages:send", 
+                    {
+                        "message": {
+                            "topic": "topic",
+                            "notification": {
+                                "title": "Daily Reset",
+                                "body": "All tasks have been reset start earning again!"
+                            },
+                            "android": {
+                                "notification": {
+                                    "image": "https://i.imgur.com/XGIQD5e.jpg"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        headers: {Authorization: `Bearer ${token}`}
+                    }
+                )
+            })
         }
         res.send("Daily Reset Occured")
         logger.event("Daily Reset Occured")
