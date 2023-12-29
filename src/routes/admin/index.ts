@@ -28,6 +28,49 @@ router.get("/reset/day", async (req:Request, res:Response) => {
         await conn.query(`UPDATE users SET streak=0,streakClaimed=-1 WHERE (streak-streakClaimed)>=2;`);
         await conn.query(`UPDATE admin SET dailyReset=? WHERE id=1`, [Math.floor(Date.now()/1000)]);
 
+        getAccessToken().then(function(token){
+
+            axios.post(
+                "https://fcm.googleapis.com/v1/projects/tubepay-8a666/messages:send", 
+                {
+                    "message": {
+                        "topic": "topic",
+                        "notification": {
+                            "title": "Daily Reset",
+                            "body": "All tasks have been reset start earning again!"
+                        },
+                        "android": {
+                            "notification": {
+                                "image": "https://i.imgur.com/XGIQD5e.jpg"
+                            }
+                        }
+                    }
+                },
+                {
+                    headers: {Authorization: `Bearer ${token}`}
+                }
+            )
+        })
+        
+        res.send("Daily Reset Occured")
+        logger.event("Daily Reset Occured")
+    } catch (error) {
+        console.error(error)
+        res.status(500).send("ERROR FEEDING VALUES INTO DATABASE");
+    } finally {
+        if (conn) conn.release();
+    }
+})
+
+router.get("/reset/day_2", async (req:Request, res:Response) => {
+    const pass = req.query.p;
+    
+    if (!pass || pass != process.env.ADMIN_PASS) return res.status(403).send("INVALID KEY " + pass);
+    
+    let conn;
+    try {
+        conn = await pool.getConnection();
+
         // Ma chudegi server ki :)
         const user = await conn.query("SELECT tasks,uid FROM users;");
         for (let i=0; i<user.length; i++) {
@@ -44,33 +87,7 @@ router.get("/reset/day", async (req:Request, res:Response) => {
             uTask["10"]["claimed"] = false;
             
             await conn.query("UPDATE users SET tasks=? WHERE uid=?", [JSON.stringify(uTask), user[i].uid])
-
-            getAccessToken().then(function(token){
-
-                axios.post(
-                    "https://fcm.googleapis.com/v1/projects/tubepay-8a666/messages:send", 
-                    {
-                        "message": {
-                            "topic": "topic",
-                            "notification": {
-                                "title": "Daily Reset",
-                                "body": "All tasks have been reset start earning again!"
-                            },
-                            "android": {
-                                "notification": {
-                                    "image": "https://i.imgur.com/XGIQD5e.jpg"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        headers: {Authorization: `Bearer ${token}`}
-                    }
-                )
-            })
         }
-        res.send("Daily Reset Occured")
-        logger.event("Daily Reset Occured")
     } catch (error) {
         console.error(error)
         res.status(500).send("ERROR FEEDING VALUES INTO DATABASE");
