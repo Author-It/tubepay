@@ -110,7 +110,7 @@ router.get("/getInfo/:uid", async (req, res) => {
         }
 
         Object.assign(result[0], { streakArr: arr }, { tasks: [JSON.parse(result[0].tasks)] }, { "dailyReset": parseInt(adminData[0].dailyReset), "number": parseInt(adminData[0].number), "luckyNumber": parseInt(adminData[0].luckyNumber), "timenow": moment(Date.now()).unix() });
-        // await conn.query(`UPDATE users SET requests=requests+1,lastRequest=? WHERE uid=?`, [Date.now(), uid]);
+        await conn.query(`UPDATE users SET requests=requests+1,lastRequest=? WHERE uid=?`, [Date.now(), uid]);
         res.json(result[0]);
     } catch (error) {
         console.log(error);
