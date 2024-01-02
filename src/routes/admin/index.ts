@@ -88,6 +88,8 @@ router.get("/reset/day_2", async (req:Request, res:Response) => {
             
             await conn.query("UPDATE users SET tasks=? WHERE uid=?", [JSON.stringify(uTask), user[i].uid])
         }
+
+        res.send("DAILY RESET 2 SUCCESSFUL");
     } catch (error) {
         console.error(error)
         res.status(500).send("ERROR FEEDING VALUES INTO DATABASE");
@@ -144,10 +146,10 @@ router.get("/draw/luckynumber", async (req:Request, res:Response) => {
             logger.warn("LuckyNumber draw success with no winner...");
             return
         }
-        const users = await conn.query(`SELECT uid FROM users WHERE luckyNum=?`, get[0].luckyNum);
-        for (let i=0; i<users.length; i++) {
-            await addPointsHistory(users[0].uid, 50, "Lucky Number", "lucky_num")
-        }
+        // const users = await conn.query(`SELECT uid FROM users WHERE luckyNum=?`, get[0].luckyNum);
+        // for (let i=0; i<users.length; i++) {
+        //     await addPointsHistory(users[0].uid, 50, "Lucky Number", "lucky_num")
+        // }
         await conn.query(`UPDATE users SET points=points+50 WHERE luckyNum=?`, [get[0].luckyNum]);
         await conn.query(`UPDATE users SET luckyNum=0 WHERE 1;`);
         await conn.query(`UPDATE admin SET luckyNumber=?,number=? WHERE id=1`, [Math.floor(Date.now()/1000), get[0].luckyNum]);
