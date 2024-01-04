@@ -18,7 +18,7 @@ router.get("/verify", async (req: Request, res: Response) => {
     const toCheck = sha1.create().update(event! + process.env.APPLOVIN_TOKEN!).digest().toHex().toString()
     const toCheck2 = sha1.create().update(event! + process.env.APPLOVIN_TOKEN_2!).digest().toHex().toString()
 
-    if (toCheck != eventToekn || toCheck2 !=eventToekn) { res.status(400).send("PLEASE UPDATE YOUR APP TO CLAIM"); warn("PLEASE UPDATE YOUR APP TO CLAIM!"); return; };
+    if (toCheck != eventToekn && toCheck2 !=eventToekn) { res.status(400).send("PLEASE UPDATE YOUR APP TO CLAIM"); warn("PLEASE UPDATE YOUR APP TO CLAIM!"); return; };
 
     let conn;
     try {
@@ -43,7 +43,7 @@ router.get("/verify20", async (req: Request, res: Response) => {
     const toCheck = sha1.create().update(event! + process.env.APPLOVIN_TOKEN!).digest().toHex().toString()
     const toCheck2 = sha1.create().update(event! + process.env.APPLOVIN_TOKEN_2!).digest().toHex().toString()
 
-    if (toCheck != eventToekn || toCheck2 !=eventToekn) { res.status(400).send("PLEASE UPDATE YOUR APP TO CLAIM"); warn("PLEASE UPDATE YOUR APP TO CLAIM!"); return; };
+    if (toCheck != eventToekn && toCheck2 !=eventToekn) { res.status(400).send("PLEASE UPDATE YOUR APP TO CLAIM"); warn("PLEASE UPDATE YOUR APP TO CLAIM!"); return; };
 
     let conn;
     try {
