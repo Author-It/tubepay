@@ -26,7 +26,7 @@ router.put(
             const decrypted = await decryptRSA(encrypted);
             const obj: meow = JSON.parse(decrypted);
 
-            if (!obj.version) return res.status(403).send("PLEASE UPDATE YOUR APP TO CLAIM!");
+            if (!obj.version || obj.version != 3) return res.status(403).send("PLEASE UPDATE YOUR APP TO CLAIM!");
             if (obj.fingerprint != process.env.FINGERPRINT) return res.send("INVALID APP FINGERPRINT");
             if (obj.time + 5 > Date.now()) return res.status(409).send("REQUEST TIMED OUT");
 
@@ -129,7 +129,7 @@ router.put(
             const decrypted = await decryptRSA(encrypted);
             const obj: meow = JSON.parse(decrypted);
 
-            if (!obj.version) return res.status(403).send("PLEASE UPDATE YOUR APP TO CLAIM!");
+            if (!obj.version || obj.version != 3) return res.status(403).send("PLEASE UPDATE YOUR APP TO CLAIM!");
             if (obj.fingerprint != process.env.FINGERPRINT) return res.send("INVALID APP FINGERPRINT");
             if (obj.time + 5 > Date.now()) return res.status(409).send("REQUEST TIMED OUT");
 
